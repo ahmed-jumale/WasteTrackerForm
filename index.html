@@ -241,6 +241,8 @@
       });
 
       submitBtn.disabled = true;
+      
+      google.script.run.withSuccessHandler(() => { location.reload(); }).submitWaste(date, wasteData, flightRoute);
     }
   </script>
 
