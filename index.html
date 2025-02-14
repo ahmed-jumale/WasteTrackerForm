@@ -5,13 +5,13 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>In-Flight Catering Waste</title>
 
-<link rel="apple-touch-icon" sizes="180x180" href="https://i.postimg.cc/gcqc27Qf/symbol-aero-medium.png">
-<link rel="shortcut icon" href="https://i.postimg.cc/gcqc27Qf/symbol-aero-medium.png">
-<link rel="icon" type="image/png" href="https://i.postimg.cc/gcqc27Qf/symbol-aero-medium.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="In-Flight Catering Waste">
-<meta name="theme-color" content="#000000">
-
+  <!-- Favicon & Home Screen Icons -->
+  <link rel="apple-touch-icon" sizes="180x180" href="https://i.postimg.cc/gcqc27Qf/symbol-aero-medium.png">
+  <link rel="shortcut icon" href="https://i.postimg.cc/gcqc27Qf/symbol-aero-medium.png">
+  <link rel="icon" type="image/png" href="https://i.postimg.cc/gcqc27Qf/symbol-aero-medium.png">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-title" content="In-Flight Catering Waste">
+  <meta name="theme-color" content="#000000">
 
   <style>
     @font-face {
@@ -40,7 +40,7 @@
       background: rgba(0, 0, 0, 0.8);
       padding: 14px;
       border-radius: 10px;
-      margin-top: 160px; /* Increased to fix header overlap */
+      margin-top: 160px;
     }
 
     .guidance-text {
@@ -142,15 +142,6 @@
       background: rgba(255, 0, 0, 0.2);
     }
   </style>
-  
-<!-- Favicon for Browser Tabs -->
-<link rel="icon" type="image/png" href="https://i.postimg.cc/j2cP5PjJ/symbol-aero-medium.png">
-
-<!-- Home Screen App Icon (for iOS & Android) -->
-<link rel="apple-touch-icon" sizes="180x180" href="https://i.postimg.cc/j2cP5PjJ/symbol-aero-medium.png">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-title" content="In-Flight Catering Waste">
-<meta name="theme-color" content="#000000">
 
 </head>
 <body>
@@ -165,6 +156,20 @@
         <option value="ASE/VNY">ASE/VNY</option>
         <option value="VNY/SJD">VNY/SJD</option>
         <option value="SJD/VNY">SJD/VNY</option>
+        <option value="VNY/RIL">VNY/RIL</option>
+        <option value="RIL/VNY">RIL/VNY</option>
+        <option value="VNY/SUN">VNY/SUN</option>
+        <option value="SUN/VNY">SUN/VNY</option>
+        <option value="VNY/SLC">VNY/SLC</option>
+        <option value="SLC/VNY">SLC/VNY</option>
+        <option value="VNY/LAS">VNY/LAS</option>
+        <option value="LAS/VNY">LAS/VNY</option>
+        <option value="VNY/TRM">VNY/TRM</option>
+        <option value="TRM/VNY">TRM/VNY</option>
+        <option value="VNY/APC">VNY/APC</option>
+        <option value="APC/VNY">APC/VNY</option>
+        <option value="VNY/CSL">VNY/CSL</option>
+        <option value="CSL/VNY">CSL/VNY</option>
       </select>
     </div>
 
@@ -236,18 +241,6 @@
       });
 
       submitBtn.disabled = true;
-
-      google.script.run.withSuccessHandler(function(success) {
-        response.innerHTML = success ? "✅ Thank you! Your response has been submitted." : "⚠️ Sorry, there is no flight scheduled on this day.";
-        response.classList.add(success ? "success-message" : "error-message");
-        response.style.display = "block";
-
-        setTimeout(() => {
-          response.style.display = "none";
-          submitBtn.disabled = false;
-          document.querySelectorAll("input[type='number']").forEach(input => input.value = "0");
-        }, 6000);
-      }).submitWaste(date, wasteData, flightRoute);
     }
   </script>
 
