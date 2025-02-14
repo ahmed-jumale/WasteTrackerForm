@@ -5,12 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>In-Flight Catering Waste</title>
 
-  <!-- Favicon & Home Screen Icons -->
+  <!-- App Icons -->
   <link rel="apple-touch-icon" sizes="180x180" href="https://i.postimg.cc/gcqc27Qf/symbol-aero-medium.png">
-  <link rel="shortcut icon" href="https://i.postimg.cc/gcqc27Qf/symbol-aero-medium.png">
   <link rel="icon" type="image/png" href="https://i.postimg.cc/gcqc27Qf/symbol-aero-medium.png">
   <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-title" content="In-Flight Catering Waste">
   <meta name="theme-color" content="#000000">
 
   <style>
@@ -228,21 +226,19 @@
       var response = document.getElementById("response");
       var submitBtn = document.getElementById("submitBtn");
 
-      if (!date) {
-        response.innerHTML = "⚠️ Please select a flight date!";
-        response.classList.add("error-message");
-        response.style.display = "block";
-        return;
-      }
-
-      var wasteData = {};
-      document.querySelectorAll("input[id^='waste_']").forEach((input, index) => {
-        wasteData[window.items[index].trim().toLowerCase()] = input.value ? parseInt(input.value) : 0;
-      });
-
       submitBtn.disabled = true;
-      
-      google.script.run.withSuccessHandler(() => { location.reload(); }).submitWaste(date, wasteData, flightRoute);
+
+      google.script.run.withSuccessHandler(function(success) {
+        response.innerHTML = success ? "✅ Thank you! Your response has been submitted." : "⚠️ Sorry, there is no flight scheduled on this day.";
+        response.classList.add(success ? "success-message" : "error-message");
+        response.style.display = "block";
+
+        setTimeout(() => {
+          response.style.display = "none";
+          submitBtn.disabled = false;
+          document.querySelectorAll("input[type='number']").forEach(input => input.value = "0");
+        }, 6000);
+      }).submitWaste(date, flightRoute);
     }
   </script>
 
